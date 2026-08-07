@@ -60,6 +60,16 @@ def create_table():
 
     connection.close()
 
+def get_total():
+    connection = sqlite3.connect(DATABASE)
+
+    result = connection.execute(
+        "SELECT SUM(amount) FROM transactions"
+    ).fetchone()
+
+    connection.close()
+
+    return result[0] or 0
 
 create_table()
 
@@ -69,10 +79,12 @@ def index():
         return add_transaction()
 
     transactions = get_transactions()
+    total = get_total()
 
     return render_template(
     "index.html",
     transactions = transactions,
+    total = total,
 )
 
 if __name__ == "__main__":
