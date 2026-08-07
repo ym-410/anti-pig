@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>家計簿</title>
+  </head>
+  
+  <body class="top">
+    <header class="topbar">
+      <h1>家計簿</h1>
+    </header>
+
+    <form class="board" method="post">
+
+      <div class="p">
+        <label for="category">カテゴリー</label>
+        <select id="category" name="category">
+          <option value="食費">食費</option>
+          <option value="日用品">日用品</option>
+          <option value="交通費">交通費</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="memo">メモ</label>
+        <input id="memo" name="memo" type="text" required>
+      </div>
+      
+      <div>
+        <label for="amount">金額</label>
+        <input id="amount"
+          name="amount"
+          type="number"
+          min="1"
+          required
+        >
+      </div>
+
+      <div>
+        <label for="date">日付</label>
+        <input
+          id="date"
+          name="date"
+          type="date"
+          required
+        >
+      </div>
+
+      <button type="submit">登録</button>
+
+
+
+    
+    </form>
+    <div class="record">
+      <h2>記録</h2>
+      <ul>
+      {% for transaction in transactions %}
+        <li>{{ transaction[4] }} {{ transaction[2] }} : {{ transaction[1]}}円 {{ transaction[3] }}</li>
+      {% endfor %}
+      </ul>
+    </div>
+
+  </body>
+</html>
