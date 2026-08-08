@@ -2,6 +2,32 @@
      color: rgb(231, 230, 230);
     margin: 0} 
 
+nav {margin: 0;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    top: 0;
+    gap: 10px;
+    background-color: rgb(24, 24, 24);
+    height: 40px;
+    padding: 10px 5% 10px 5%;
+    border-bottom: solid 1px #424242;
+}
+
+
+.menu {margin-bottom: 10px;
+    width: 30%;
+    max-width: 150px;
+    padding: 10px 20px 30px 20px;
+    background-color: rgb(24, 24, 24);    
+    align-items: center;
+    border: none;
+}
+
+a {text-decoration: none;
+    color: white;}
+
+
 .board  {background-color: rgb(24, 24, 24);
     align-items: center;
     margin: auto;

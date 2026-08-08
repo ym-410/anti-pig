@@ -7,10 +7,14 @@
   </head>
   
   <body class="top">
-    <header class="topbar">
-      <h1>家計簿</h1>
-    </header>
 
+
+    <nav> 
+      <a class="menu" href="/">＋ 入力</a> 
+      <a class="menu" href="/calendar">□ カレンダー</a>
+      <a class="menu" href="/graph">◔ グラフ</a>
+    </nav>
+    
     <form class="board" method="post">
 
       <div class="p">
@@ -53,16 +57,6 @@
 
     
     </form>
-    <div class="record">
-      <h2>記録</h2>
-      <ul>
-      {% for transaction in transactions %}
-        <li>{{ transaction[4] }} {{ transaction[2] }} : {{ transaction[1]}}円 {{ transaction[3] }}</li>
-      {% endfor %}
-      </ul>
-
-      <p>合計: {{ total }}円</p>
-    </div>
-
+  
   </body>
 </html>
