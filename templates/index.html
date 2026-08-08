@@ -16,9 +16,27 @@
       <a class="menu" href="/graph">◔ グラフ</a>
     </nav>
     
+
+
     <form class="board" method="post">
 
-      
+      <div class="tabs">
+        <label>
+          <input type="radio"
+            name="transaction_type"
+            value="expense"
+            checked>
+          <span>支出</span>
+        </label>
+
+        <label>
+          <input type="radio"
+            name="transaction_type"
+            value="income">
+          <span>収入</span>
+        </label>
+      </div>
+        
       <div>
         <label for="date">日付</label>
         <input
@@ -66,11 +84,57 @@
         </label>
         
         <label class="category-button">
+          <input type="radio" name="category" value="衣服" required>
+          <span>衣服</span>
+        </label>
+        
+        <label class="category-button">
+          <input type="radio" name="category" value="交際費" required>
+          <span>交際費</span>
+        </label>
+        
+        <label class="category-button">
+          <input type="radio" name="category" value="嗜好品" required>
+          <span>嗜好品</span>
+        </label>
+
+        <label class="category-button">
+          <input type="radio" name="category" value="ガソリン代" required>
+          <span>ガソリン代</span>
+        </label>
+
+        <label class="category-button">
+          <input type="radio" name="category" value="ガジェット" required>
+          <span>ガジェット</span>
+        </label>
+
+        <label class="category-button">
+          <input type="radio" name="category" value="公共" required>
+          <span>公共</span>
+        </label>
+
+        <label class="category-button">
+          <input type="radio" name="category" value="美容" required>
+          <span>美容</span>
+        </label>
+
+        <label class="category-button">
+          <input type="radio" name="category" value="医療費" required>
+          <span>医療費</span>
+        </label>
+
+        <label class="category-button">
           <input type="radio" name="category" value="交通費" required>
           <span>交通費</span>
         </label>
-        
+
+        <label class="category-button">
+          <input type="radio" name="category" value="車" required>
+          <span>車</span>
+        </label>
+
       </div>
+        
 
       <button type="submit">登録</button>
 
