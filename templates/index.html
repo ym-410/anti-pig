@@ -35,16 +35,22 @@
         <input class="input" id="memo" name="memo" type="text" required>
       </div>
       
-      <div>
+      <div class="amount">
         <label for="amount">金額</label>
-        <input
-          class="input"
-          id="amount"
-          name="amount"
-          type="number"
-          min="1"
-          required
-        >
+        <div class="amount-input">
+          <input
+            class="input"
+            id="amount"
+            name="amount"
+            type="number"
+            inputmode="numeric"
+            min="1"
+            step="1"
+            required
+          >
+          <button class="add-tax" type="button" data-tax-rate="1.08">8%</button>
+          <button class="add-tax" type="button" data-tax-rate="1.1">10%</button>
+        </div>
       </div>
 
 
@@ -73,5 +79,6 @@
     
     </form>
   
+    <script src="/static/script.js"></script>
   </body>
 </html>

@@ -72,6 +72,46 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: var(--white);
 }
 
+.amount {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.amount > label {
+    flex-shrink: 0;
+}
+
+.amount-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    margin: 5px 40px 0px 0px;
+}
+
+.amount-input .input {
+    flex: 1;
+    min-width: 0;
+    width: 40%;
+    margin: 0px;
+    margin-left: 25px;
+}
+
+.amount-input button {
+    flex-shrink: 0;
+    min-height: 32px;
+    padding: 4px 8px;
+    color: var(--white);
+    background-color: var(--line);
+    border: 1px solid #777;
+    border-radius: 5px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
 /* カテゴリー*/
 
 .category-list {
