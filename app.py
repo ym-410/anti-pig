@@ -94,6 +94,12 @@ def index():
     if request.method == "POST":
         return add_transaction()
 
+    return render_template(
+    "index.html",
+    )
+
+@app.route("/calendar", methods=["GET"])
+def calender():
     month = request.args.get("month", "2026-08")
 
     transactions = get_transactions()
@@ -101,16 +107,12 @@ def index():
     month_total = get_month_total(month)
 
     return render_template(
-    "index.html",
-    transactions = transactions,
-    total = total,
-    month_total=month_total,
-    month=month,
-)
-
-@app.route("/calendar", methods=["GET"])
-def calender():
-    return render_template("calendar.html")
+        "calendar.html",
+        transactions = transactions,
+        total = total,
+        month_total=month_total,
+        month=month,
+    )
 
 @app.route("/graph", methods=["GET"])
 def graph():
