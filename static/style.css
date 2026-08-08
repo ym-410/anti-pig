@@ -38,12 +38,12 @@ a {text-decoration: none;
 .board  {background-color: var(--bg);
     align-items: center;
     margin: 20px auto 10px;
-    padding: 10px; 
+    padding: 10px 10px 10px 30px; 
     width: 70%;
-    max-width: 500px;
+    max-width: 450px;
     border-radius: 10px;
+    
 }
-
 
 .board > button {display: block;
     margin: 50px auto 0px;
@@ -54,19 +54,23 @@ a {text-decoration: none;
     font-size: 20px;
     color: var(--white);}
 
-
-
-.record {background-color: var(--bg);
-        margin: 15px auto 0;
-        width: 80%;
-        padding: 5px;
-        border-radius: 10px;
-        max-width: 500px;
+/* 日付 */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
 }
 
-.record h2 {margin: 0;
-            padding-left: 10%;}
-
+/* 入力ボックス */
+.input {
+    width: 75%;
+    height: 30px;
+    margin: 5px auto 5px 30px;
+    background-color: var(--line);
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+}
 
 /* カテゴリー*/
 
@@ -91,6 +95,21 @@ a {text-decoration: none;
   color: black;
   font-weight: bold;
 }
+
+
+
+.record {background-color: var(--bg);
+        margin: 15px auto 0;
+        width: 80%;
+        padding: 5px;
+        border-radius: 10px;
+        max-width: 500px;
+}
+
+.record h2 {margin: 0;
+            padding-left: 10%;}
+
+
 
 @media (max-width: 600px) {
     nav {
