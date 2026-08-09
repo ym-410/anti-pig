@@ -75,7 +75,7 @@ def get_month_record(month):
         SELECT id, amount, category, date, memo, is_income
         FROM transactions
         WHERE substr(date, 1, 7) = ?
-        ORDER BY id DESC
+        ORDER BY date DESC, id DESC
         """,
         (month,),
     ).fetchall()
