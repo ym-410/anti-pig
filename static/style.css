@@ -27,7 +27,7 @@ nav {margin: 0;
     display: flex;
     border-bottom: solid 1px var(--line);
     font-size: 20px;
-    margin: -10px -10px 15px -30px;
+    margin: -10px -30px 15px -30px;
     overflow: hidden;
     border-radius: 10px 10px 0 0;
 }
@@ -58,6 +58,9 @@ nav {margin: 0;
     color: white;
     font-weight: bold;
 }
+
+/* 入力欄 */
+
 .menu {margin-bottom: 10px;
     width: 30%;
     max-width: 150px;
@@ -101,6 +104,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .input {
     width: 75%;
     height: 30px;
+    padding-left: 10px;
     margin: 5px auto 5px 30px;
     background-color: var(--line);
     border: none;
