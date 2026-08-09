@@ -11,17 +11,32 @@
     color: var(--white);
     margin: 0} 
 
-nav {margin: 0;
+/* ナビゲーション */
+nav {margin-bottom: 0;
     justify-content: center;
     display: flex;
-    margin: auto;
     top: 0;
     gap: 10px;
     background-color: var(--bg);
-    height: 40px;
-    padding: 10px 5% 10px 5%;
+    height: 50px;
+    padding: 0;
     border-bottom: solid 1px var(--line);
 }
+
+.menu {
+    display: flex;
+    width: 30%;
+    height: auto;
+    max-width: 150px;
+    background-color:  var(--bg);
+    justify-content: center; 
+    align-items: center;
+    border: none;
+}
+
+a {text-decoration: none;
+    color: var(--white);}
+
 
 .tabs {
     display: flex;
@@ -61,17 +76,6 @@ nav {margin: 0;
 
 /* 入力欄 */
 
-.menu {margin-bottom: 10px;
-    width: 30%;
-    max-width: 150px;
-    padding: 10px 20px 30px 20px;
-    background-color:  var(--bg);    
-    text-align: center;
-    border: none;
-}
-
-a {text-decoration: none;
-    color: var(--white);}
 
 
 .board  {background-color: var(--bg);
@@ -228,6 +232,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-align: center;
     margin: 10px 0px 10px 0px;
     flex-wrap: wrap;
+    line-height: 25px;
     border-radius: 10px;
 }
 
@@ -238,6 +243,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .score-head-expense {
     color: var(--expense);
+    
 }
 .score-head-income {
     color: var(--income);
@@ -332,16 +338,37 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 
 @media (max-width: 600px) {
+    .top {
+        padding-bottom: 70px;
+    }
+    .input-page {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100dvh;
+        box-sizing: border-box;
+        overflow: hidden;
+  }
+
+
     nav {
+        position: fixed;
+        bottom: 0;
+        top: auto;
+
+        right: 0;
+        left: 0;
+
+        z-index:1000;
+
         gap: 4px;
-        padding: 8px;
+        height: 70px;
     }
 
     .menu {
         flex: 1;
         width: 30%;
-        padding: 8px 4px;
-        font-size: 14px;
+        font-size: 18px;
     }
 
     .board,
