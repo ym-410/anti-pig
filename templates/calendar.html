@@ -16,19 +16,7 @@
     </nav>
     
     <div class="record">
-      <h2>記録</h2>
-      <ul>
-      {% for transaction in transactions %}
-        <li>{{ transaction[4] }} {{ transaction[2] }} : {{ transaction[1]}}円 {{ transaction[3] }}</li>
-      {% endfor %}
-      </ul>
-
-      <p>合計: {{ total }}円</p>
-    </div>
-
-    <div>
       <form method="get">
-        <label for="month">月</label>
         <input
           id="month"
           name="month"
@@ -38,7 +26,26 @@
         <button type="submit">表示</button>
       </form>
 
-      <p>{{month}}の合計:{{month_total}}</p>
+      <div class="score-head">
+        <p>収入<br>{{ income_total }} 円</p>
+        <p>支出<br> {{ expense_total }} 円</p>
+        <p class="balance">収支<br> {{ month_total }} 円</p>
+      </div>
+
+    
+
+
+      <ul class="score">
+        {% for transaction in month_record %}
+          <li>
+            {{ transaction[2] }}
+            {{ transaction[4] }}：
+            {{ transaction[1] }}円
+          </li>
+        {% else %}
+          <li>この月の記録はありません</li>
+        {% endfor %}
+      </ul>
     </div>
 
   </body>

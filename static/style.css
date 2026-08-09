@@ -178,17 +178,69 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-
+/* カレンダー */
 .record {background-color: var(--bg);
         margin: 15px auto 0;
         width: 80%;
-        padding: 5px;
+        padding: 10px;
         border-radius: 10px;
         max-width: 500px;
 }
 
-.record h2 {margin: 0;
-            padding-left: 10%;}
+.record > form {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+}
+
+.record > form input {
+    height: 40px;
+    background-color: var(--line);
+    color: var(--white);
+    padding: 0px 10px 0px 10px;
+    border: none;
+    font-size: 20px;
+}
+
+
+
+.record > form button {
+    background-color: var(--line);
+    color: var(--white);
+    border: none;
+    font-size: 15px;
+}
+
+/* 集計 */
+.score-head {
+    display: flex;
+    background-color: var(--line);
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+    flex-wrap: wrap;
+    border-radius: 10px;
+}
+
+.score-head p {
+    flex: 1;
+}
+
+.score-head .balance {
+    flex: 0 0 100%;
+    margin: 5px 0 15px 0;
+    padding-top: 10px;
+    text-align: center;
+    
+    border-top: solid 1px var(--bg);
+}
+
+
+.score {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 
 
 
@@ -210,6 +262,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin: 0;
         width: calc(100% - 24px);
         padding: 14px 16px 14px 14px;
+        border-radius: 0;
     }
 
     .tabs {
