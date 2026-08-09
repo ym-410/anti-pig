@@ -2,6 +2,8 @@
     --bg: rgb(24, 24, 24);
     --white: #cdcdcd;
     --line: #424242;
+    --expense: #c17a7a;
+    --income: #7d8ec7;
 
 }
 
@@ -47,11 +49,15 @@ nav {margin: 0;
 }
 
 .tabs > label input:checked + span {
-    background-color: var(--line);
+    background-color: var(--expense);
     color: white;
     font-weight: bold;
 }
-
+.tabs > label:last-child input:checked + span {
+    background-color: var(--income);
+    color: white;
+    font-weight: bold;
+}
 .menu {margin-bottom: 10px;
     width: 30%;
     max-width: 150px;
@@ -223,10 +229,56 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .score-head p {
     flex: 1;
+    font-weight: bold;
 }
 
+.score-head-expense {
+    color: var(--expense);
+}
+.score-head-income {
+    color: var(--income);
+}
 
+/* カレンダータブ*/
 
+.calendar-tabs {
+    display: flex;
+    border-bottom: solid 2px var(--bg);
+    font-size: 15px;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+}
+
+.calendar-tabs > label {
+    flex: 1;
+}
+
+.calendar-tabs > label input {
+    display: none;
+}
+
+.calendar-tabs > label span {
+    display: block;
+    cursor: pointer;
+    padding: 12px 0;
+    text-align: center;
+    background-color: var(--bg);
+}
+
+.calendar-tabs > label input:checked + span {
+    background-color: var(--expense);
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-tabs > label:last-child input:checked + span {
+    background-color: var(--income);
+    color: white;
+    font-weight: bold;
+}
+
+/* 収支表 */
 .score-date {
     background-color: var(--line);
     padding: 3px 10px;

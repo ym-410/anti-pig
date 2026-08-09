@@ -27,11 +27,32 @@
       </form>
 
       <div class="score-head">
-        <p>収入<br>{{ "{:,}".format(income_total) }} 円</p>
-        <p>支出<br> {{ "{:,}".format(expense_total) }} 円</p>
+        <p class="score-head-expense">支出<br> {{ "{:,}".format(expense_total) }} 円</p>
+        <p class="score-head-income">収入<br>{{ "{:,}".format(income_total) }} 円</p>
         <p >収支<br> {{ "{:,}".format(month_total) }} 円</p>
       </div>
 
+      <div class="calendar-tabs">
+        
+        <label>
+          <input type="radio"
+          name="or_income"
+          value="0"
+          checked>
+          </input>
+          <span>支出</span>
+        </label>
+        
+        <label>
+          <input type="radio"
+          name="or_income"
+          value="1"
+          checked>
+          </input>
+          <span>収入</span>
+        </label>
+      
+      </div>
       <ul class="score">
         {% for transaction in month_record %}
           {% if loop.first or transaction[3] != loop.previtem[3] %}
