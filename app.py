@@ -1,4 +1,5 @@
 import db_handle
+from datetime import date
 from flask import Flask, render_template, request # 本体作成 / html読み込み
 
 app = Flask(__name__)
@@ -20,8 +21,8 @@ def index():
 # カレンダーページ
 @app.route("/calendar", methods=["GET"])
 def calender():
-    month = request.args.get("month", "2026-08")
-    is_income = request.args.get("is_income")
+    current_month = date.today().strftime("%Y-%m")
+    month = request.args.get("month", current_month)
 
     transactions = db_handle.get_transactions()
     total = db_handle.get_total()
@@ -29,7 +30,7 @@ def calender():
     income_total = db_handle.month_income(month)
     expense_total = db_handle.month_expense(month)
     month_total = income_total - expense_total
-    
+
     return render_template(
         "calendar.html",
         transactions = transactions,
