@@ -109,7 +109,7 @@ def month_income(month):
         """ 
         SELECT SUM(amount)
         FROM transactions
-        WHERE substr(date, 1, 7) = ? AND is_income = 0
+        WHERE substr(date, 1, 7) = ? AND is_income = 1
         """,
         (month,),
     ).fetchone()
@@ -126,7 +126,7 @@ def month_expense(month):
         """
         SELECT SUM(amount)
             FROM transactions
-            WHERE substr(date, 1, 7) = ? and is_income = 1
+            WHERE substr(date, 1, 7) = ? and is_income = 0
         """,
         (month,),
     ).fetchone()

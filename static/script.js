@@ -3,6 +3,8 @@ const addTaxButtons = document.querySelectorAll(".add-tax");
 const dateInput = document.querySelector("#date");
 const categoryList = document.querySelector("#category-list");
 const typeInputs = document.querySelectorAll('input[name="is_income"]');
+const calendarTypeInputs = document.querySelectorAll('input[name="or_income"]');
+
 
 // カレンダー月 自動入力
 if (dateInput && !dateInput.value) {
@@ -59,5 +61,34 @@ typeInputs.forEach((input) => {
 });
 
 
+// カレンダー収支タブ切り替え
+
+function changeCalendarRecords() {
+    const checkedInput = document.querySelector('input[name="or_income"]:checked');
+
+    if (!checkedInput) {
+        return;
+    }
+
+    const type = checkedInput.value;
+    const rows = document.querySelectorAll(".score-row");
+
+    rows.forEach((row) => {
+        row.hidden = row.dataset.isIncome !== type;
+    });
+}
+
+calendarTypeInputs.forEach((input) => {
+    input.addEventListener("change", changeCalendarRecords);
+});
+
+
+
 // 初期表示
-changeCategories();
+if (typeInputs.length > 0) {
+    changeCategories();
+}
+
+if (calendarTypeInputs.length > 0) {
+    changeCalendarRecords();
+}

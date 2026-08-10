@@ -32,7 +32,7 @@
         <p >収支<br> {{ "{:,}".format(month_total) }} 円</p>
       </div>
 
-      <div class="calendar-tabs">
+      <div class="calendar-tabs" id="calendar-tabs">
         
         <label>
           <input type="radio"
@@ -47,12 +47,12 @@
           <input type="radio"
           name="or_income"
           value="1"
-          checked>
+          >
           </input>
           <span>収入</span>
         </label>
-      
       </div>
+
       <ul class="score">
         {% for transaction in month_record %}
           {% if loop.first or transaction[3] != loop.previtem[3] %}
@@ -60,18 +60,18 @@
               {{ transaction[3]}}
             </li>
           {% endif %}
-            <li class="score-row">
+            <li
+              class="score-row"
+              data-is-income="{{ transaction[5] }}">
               <p class="score-category">{{ transaction[2] }}</p>
               <p class="score-memo">{{ transaction[4] }}</p>
               <p class="score-amount">{{ "{:,}".format(transaction[1]) }}円</p>          
             </li>
-
-
-        {% else %}
-          <li>この月の記録はありません</li>
-        {% endfor %}
-      </ul>
+          {% else %}
+            <li>この月の記録はありません</li>
+          {% endfor %}
+        </ul>
     </div>
-
+    <script src="/static/script.js"></script>
   </body>
 </html>
