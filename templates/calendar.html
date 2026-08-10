@@ -62,7 +62,8 @@
           {% endif %}
             <li
               class="score-row"
-              data-is-income="{{ transaction[5] }}">
+              data-is-income="{{ transaction[5] }}"
+            >
               <p class="score-category">{{ transaction[2] }}</p>
               <p class="score-memo">{{ transaction[4] }}</p>
               <p class="score-amount">{{ "{:,}".format(transaction[1]) }}円</p>          

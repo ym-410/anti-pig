@@ -4,7 +4,7 @@ const dateInput = document.querySelector("#date");
 const categoryList = document.querySelector("#category-list");
 const typeInputs = document.querySelectorAll('input[name="is_income"]');
 const calendarTypeInputs = document.querySelectorAll('input[name="or_income"]');
-
+const dateHeaders = document.querySelectorAll(".score-date")
 
 // カレンダー月 自動入力
 if (dateInput && !dateInput.value) {
@@ -76,11 +76,28 @@ function changeCalendarRecords() {
     rows.forEach((row) => {
         row.hidden = row.dataset.isIncome !== type;
     });
+    
+    // カレンダーの日付非表示
+    dateHeaders.forEach((header) => {
+        let element = header.nextElementSibling;
+        let hasVisibleRow = false;
+
+        while(element && !element.classList.contains("score-date")) {
+            if (element.classList.contains("score-row") && !element.hidden) {
+                hasVisibleRow = true;
+            }
+            element = element.nextElementSibling;
+            }
+        header.hidden = !hasVisibleRow;
+        
+    })
+
 }
 
 calendarTypeInputs.forEach((input) => {
     input.addEventListener("change", changeCalendarRecords);
 });
+
 
 
 
