@@ -7,7 +7,8 @@
 
 }
 
-.top {background-color: rgb(32, 32, 32);
+.top {
+    background-color: rgb(32, 32, 32);
     color: var(--white);
     margin: 0} 
 
@@ -203,8 +204,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .record > form {
     display: flex;
-    margin: 0;
+    margin: 0px 0px 8px 0px;
     justify-content: center;
+
 }
 
 .record > form input {
@@ -337,6 +339,51 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-align: right;
 }
 
+/* グラフ */
+.graph-panel[hidden] {
+    display: none;
+}
+
+.graph-panel h1 {
+    margin: 0;
+    font-size: 20px;
+    text-align: center;
+    background-color: var(--white);
+    color: var(--line);
+}
+
+.pie-chart-container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 25px 0;
+}
+
+.pie-chart {
+    width: 220px;
+    height: 220px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.pie-legend {
+    flex: 1;
+    padding: 0;
+    list-style: none;
+}
+
+.pie-legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+}
+
+.pie-legend-amount {
+    text-align: right;
+    white-space: nowrap;
+}
+
+
 
 
 
@@ -344,6 +391,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 @media (max-width: 600px) {
     .top {
         padding-bottom: 70px;
+        background-color: var(--bg);
     }
     .input-page {
         position: fixed;
@@ -359,6 +407,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         position: fixed;
         bottom: 0;
         top: auto;
+        border-top: solid 2px var(--line);
 
         right: 0;
         left: 0;
@@ -387,6 +436,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         margin: -14px -14px 15px;
         border-radius: 0px;
     }
+
+    .pie-chart-container {
+        flex-direction: column;
+    }
+
+    .pie-chart {
+        width: 200px;
+        height: 200px;
+    }
+
+    .pie-legend {
+        width: 100%;
+    }
 }
 
 @media (max-width: 360px) {
@@ -394,3 +456,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         font-size: 12px;
     }
 }
+

@@ -45,7 +45,30 @@ def calender():
 # グラフページ
 @app.route("/graph", methods=["GET"])
 def graph():
-    return render_template("graph.html")
+    current_month = date.today().strftime("%Y-%m")
+    month = request.args.get("month", current_month)
+
+    expense_records = db_handle.get_category_totals(month, 0)
+    income_records = db_handle.get_category_totals(month, 1)
+        
+    expense_max = max(
+        (amount for cateogry, amount in expense_records), 
+        default=0,
+    )
+
+    income_max = max(
+        (amount for cateogry, amount in income_records), 
+        default=0,
+    )
+
+    return render_template(
+        "graph.html",
+        month=month,
+        expense_records=expense_records,
+        income_records=income_records,
+        expense_max=expense_max,
+        income_max=income_max,
+        )
 
 if __name__ == "__main__":
     app.run(debug=True) # コード変更時に再度読み込み
