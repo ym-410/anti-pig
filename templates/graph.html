@@ -30,6 +30,12 @@
         <button type="submit">表示</button>
       </form>
 
+      <div class="score-head">
+        <p class="score-head-expense">支出<br> {{ "{:,}".format(expense_total) }} 円</p>
+        <p class="score-head-income">収入<br>{{ "{:,}".format(income_total) }} 円</p>
+        <p >収支<br> {{ "{:,}".format(month_total) }} 円</p>
+      </div>
+
       <div class="calendar-tabs" id="calendar-tabs">
         
         <label>
