@@ -14,8 +14,18 @@ def index():
     if request.method == "POST":
         return db_handle.add_transaction()
 
+    form_data = {
+        "amount": "",
+        "category": "",
+        "date": "",
+        "memo": "",
+        "is_income": 0,
+    }
+
     return render_template(
     "index.html",
+    form_data=form_data,
+    submit_label="登録",
     )
 
 # カレンダーページ
@@ -77,7 +87,7 @@ def graph():
         )
 
 # 更新ページ
-@app.route("/transactions/<int:transaction_id>/update", methods=["POST"])
+@app.route("/transactions/<int:transaction_id>/edit", methods=["POST"])
 def update(transaction_id):
     amount = request.form.get("amount", type=int)
     category = request.form.get("category", "").strip()
@@ -121,6 +131,26 @@ def delete(transaction_id):
 
     return redirect(f"/calendar?month={month}")
 
+@app.route("/transactions/<int:transaction_id>/edit", methods=["GET"])
+def edit_page(transaction_id):
+    transaction = db_handle.get_transaction(transaction_id)
+    if transaction is None:
+        return f"記録が見つかりません", 404
+
+    form_data = {
+        "amount": transaction[1],
+        "category": transaction[2],
+        "date": transaction[3],
+        "memo": transaction[4],
+        "is_income": transaction[5],
+    }
+
+    return render_template(
+        "edit.html",
+        form_data=form_data,
+        submit_label="更新",
+        transaction_id=transaction_id,
+    )
         
 
 if __name__ == "__main__":

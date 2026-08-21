@@ -1,0 +1,72 @@
+<form class="board" method="post">
+
+    <div class="tabs">
+    <label>
+        <input type="radio"
+        name="is_income"
+        value="0"
+        {% if form_data.is_income == 0 %}checked{% endif %}>
+        <span>支出</span>
+    </label>
+
+    <label>
+        <input type="radio"
+        name="is_income"
+        value="1"
+        {% if form_data.is_income == 1 %}checked{% endif %}>
+        <span>収入</span>
+    </label>
+    </div>
+    
+    <div>
+    <label for="date">日付</label>
+    <input
+        class="input"
+        id="date"
+        name="date"
+        type="date"
+        value="{{ form_data.date }}"
+        required
+    >
+    </div>
+
+    <div>
+    <label for="memo">メモ</label>
+    <input
+        class="input"
+        id="memo"
+        name="memo"
+        type="text"
+        value="{{ form_data.memo }}"
+        required>
+    </div>
+    
+    <div class="amount">
+    <label for="amount">金額</label>
+    <div class="amount-input">
+        <input
+        class="input"
+        id="amount"
+        name="amount"
+        type="number"
+        value="{{ form_data.amount }}"
+        inputmode="numeric"
+        min="1"
+        step="1"
+        required
+        >
+        <button class="add-tax" type="button" data-tax-rate="1.08">8%</button>
+        <button class="add-tax" type="button" data-tax-rate="1.1">10%</button>
+    </div>
+    </div>
+
+    <div class="category-list" id="category-list" data-selected-category="{{ form_data.category }}">
+    </div>
+    
+
+    <button class="send-button" type="submit">{{ submit_label }}</button>
+
+
+
+
+</form>

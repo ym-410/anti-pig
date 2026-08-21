@@ -47,7 +47,22 @@ def add_transaction():
 
     return redirect("/")
 
-# 読み取り
+# 一件取得
+def get_transaction(transaction_id):
+    connection = sqlite3.connect(DATABASE)
+    transaction = connection.execute(
+        """
+        SELECT id, amount, category, date, memo, is_income
+        FROM transactions
+        WHERE id = ?
+        """, (transaction_id,),
+    ).fetchone()
+
+    connection.close()
+
+    return transaction
+
+# 全件取得
 def get_transactions():
     connection = sqlite3.connect(DATABASE)
     transactions = connection.execute(
