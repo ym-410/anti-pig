@@ -1,6 +1,6 @@
 import db_handle
 from datetime import date
-from flask import Flask, render_template, request # 本体作成 / html読み込み
+from flask import Flask, render_template, redirect, request # 本体作成 / html読み込み
 
 app = Flask(__name__)
 DATABASE = "antipig.db"
@@ -75,6 +75,53 @@ def graph():
         expense_max=expense_max,
         income_max=income_max,
         )
+
+# 更新ページ
+@app.route("/transactions/<int:transaction_id>/update", methods=["POST"])
+def update(transaction_id):
+    amount = request.form.get("amount", type=int)
+    category = request.form.get("category", "").strip()
+    transaction_date = request.form.get("date", "")
+    memo = request.form.get("memo", "").strip()
+    is_income = request.form.get("is_income", type=int)
+
+    if (
+        amount is None
+        or amount <= 0
+        or not category
+        or not transaction_date
+        or is_income not in (0, 1)
+    ):
+        return "入力内容が不正です", 400
+
+    updated = db_handle.update_transaction(
+        transaction_id,
+        amount, 
+        category,
+        transaction_date,
+        memo,
+        is_income,
+    )
+
+    if updated == 0:
+        return "記録が見つかりません", 404
+
+    month = transaction_date[:7]
+    return redirect(f"/calendar?month={month}")
+
+# 削除ページ
+@app.route("/transactions/<int:transaction_id>/delete", methods=["POST"])
+def delete(transaction_id):
+    month = request.form.get("month", "")
+
+    deleted = db_handle.delete_transaction(transaction_id)
+
+    if deleted == 0:
+        return "記録が見つかりません", 400
+
+    return redirect(f"/calendar?month={month}")
+
+        
 
 if __name__ == "__main__":
     app.run(debug=True) # コード変更時に再度読み込み
