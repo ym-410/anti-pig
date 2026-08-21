@@ -151,6 +151,7 @@ function drawPieChart(panel) {
 
         const item = document.createElement("li");
 
+        item.className = "pie-legend-row";
         item.innerHTML = `
             <span
                 class="pie-legend-color"

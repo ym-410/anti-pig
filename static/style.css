@@ -340,12 +340,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* グラフ */
+
 .graph-panel[hidden] {
     display: none;
 }
 
 .graph-panel h1 {
     margin: 0;
+    padding: 4px;
     font-size: 20px;
     text-align: center;
     background-color: var(--white);
@@ -370,12 +372,31 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex: 1;
     padding: 0;
     list-style: none;
+    border: solid 2px var(--line);
+    background-color: var(--bg);
+    font-size: 20px;
+}
+
+.pie-legend-row {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 15px 1.5fr 2fr;
+    padding: 8px 20px 8px 10px;
+    border-bottom: solid 2px var(--line);
+}
+
+.pie-legend-row:last-child {
+    border: none;
 }
 
 .pie-legend-color {
     width: 14px;
     height: 14px;
     border-radius: 3px;
+}
+
+.pie-legend-category {
+    padding-left: 10px;
 }
 
 .pie-legend-amount {
