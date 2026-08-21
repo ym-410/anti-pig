@@ -50,7 +50,10 @@ def graph():
 
     expense_records = db_handle.get_category_totals(month, 0)
     income_records = db_handle.get_category_totals(month, 1)
-        
+    income_total = db_handle.month_income(month)
+    expense_total = db_handle.month_expense(month)
+    month_total = income_total - expense_total
+
     expense_max = max(
         (amount for cateogry, amount in expense_records), 
         default=0,
@@ -66,6 +69,9 @@ def graph():
         month=month,
         expense_records=expense_records,
         income_records=income_records,
+        month_total=month_total,
+        expense_total=expense_total,
+        income_total=income_total,
         expense_max=expense_max,
         income_max=income_max,
         )
