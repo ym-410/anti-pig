@@ -312,19 +312,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* 収支表 */
-.score-date {
-    background-color: var(--line);
-    padding: 3px 10px;
-    margin: 0px 0px 5px;
-
-}
-
 .score {
     list-style: none;
     margin: 0;
     padding: 0;
     border: solid 2px var(--line)
     
+}
+
+.score-date {
+    background-color: var(--line);
+    padding: 3px 10px;
+    margin: 0;
+
 }
 
 .score-row {
@@ -338,29 +338,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .score-row-link {
     display: grid;
     grid-template-columns: 1.5fr 2fr 1.5fr;
+    padding: 6px 10px 6px 0px;
     color: inherit;
 }
 
 .score-category {
     padding: 2px;
-    margin: 0 5px 10px 0px;
+    margin: 0;
     text-align: center;
     border-right: solid 1px var(--line);
 }
 
 .score-memo {
-    
-    margin: 0 5px 10px 0px;
     padding: 2px;
-    
+    margin: 0;
     text-align: center;
     border-right: solid 1px var(--line);
 }
 .score-amount {
-    
-    margin: 0 5px 10px 0px;
     padding: 2px;
-    
+    margin: 0;
     text-align: right;
 }
 
@@ -428,11 +425,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     text-align: right;
     white-space: nowrap;
 }
-
-
-
-
-
 
 @media (max-width: 600px) {
     .top {
