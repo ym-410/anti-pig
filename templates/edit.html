@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
-    <title>家計簿</title>
+    <title>記録を編集</title>
   </head>
   
   <body class="top input-page">
-
+    <header class="header">編集ページ</header>
 
     <nav> 
       <a class="menu" href="/">＋ 入力</a> 
@@ -17,7 +17,15 @@
     </nav>
 
     {% include "_transaction_form.html" %}
-    
+
+    <form
+        class="delete-form"
+        method="post"
+        action="/transactions/{{ transaction_id }}/delete"
+    >
+        <input name="month" type="hidden" value="{{ form_data.date[:7] }}">
+        <button class="send-button delete-button" type="submit">削除</button>
+    </form>    
 
     <script src="/static/script.js"></script>
   </body>

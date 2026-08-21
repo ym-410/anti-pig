@@ -38,22 +38,34 @@ const categories = {
 };
 
 function changeCategories() {
-    const type = document.querySelector('input[name="is_income"]:checked').value;
+    const checkedInput = document.querySelector('input[name="is_income"]:checked');
+
+    if (!checkedInput || !categoryList) {
+        return;
+    }
+
+    const type = checkedInput.value;
+    const selectedCategory = categoryList.dataset.selectedCategory || "";
 
     categoryList.innerHTML = categories[type]
         .map((category) => {
+            const checked = category === selectedCategory ? "checked" : "";
+
             return `
                 <label class="category-button">
                     <input
                         type="radio"
                         name="category"
                         value="${category}"
+                        ${checked}
                         required
                     >
                     <span>${category}</span>
                 </label>
             `;
         }).join("");
+        
+    categoryList.dataset.selectedCategory = "";
 }
 
 // 支出・収入切り替え時のイベント登録

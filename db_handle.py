@@ -47,7 +47,22 @@ def add_transaction():
 
     return redirect("/")
 
-# 読み取り
+# 一件取得
+def get_transaction(transaction_id):
+    connection = sqlite3.connect(DATABASE)
+    transaction = connection.execute(
+        """
+        SELECT id, amount, category, date, memo, is_income
+        FROM transactions
+        WHERE id = ?
+        """, (transaction_id,),
+    ).fetchone()
+
+    connection.close()
+
+    return transaction
+
+# 全件取得
 def get_transactions():
     connection = sqlite3.connect(DATABASE)
     transactions = connection.execute(
@@ -63,9 +78,60 @@ def get_transactions():
     return transactions
 
 # 更新
+def update_transaction(
+        transaction_id,
+        amount,
+        category,
+        transaction_date,
+        memo,
+        is_income,
+    ):
+
+    connection = sqlite3.connect(DATABASE)
+
+    cursor = connection.execute(
+        """
+        UPDATE transactions
+        SET amount = ?,
+            category = ?,
+            date = ?,
+            memo = ?,
+            is_income = ?
+        WHERE id = ?
+        """,
+        (
+            amount,
+            category,
+            transaction_date,
+            memo,
+            is_income,
+            transaction_id,
+        ),
+    )
+
+    connection.commit()
+    updated = cursor.rowcount
+    connection.close()
+
+    return updated
 
 # 削除
+def delete_transaction(transaction_id):
+    connection = sqlite3.connect(DATABASE)
 
+    cursor = connection.execute(
+        """
+        DELETE FROM transactions
+        WHERE id = ?
+        """,
+        (transaction_id,),
+    )
+
+    connection.commit()
+    deleted = cursor.rowcount
+    connection.close()
+
+    return deleted
 
 # 月のデータ取得
 def get_month_record(month):

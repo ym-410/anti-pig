@@ -12,6 +12,16 @@
     color: var(--white);
     margin: 0} 
 
+/* 編集ページヘッダー*/
+.header {
+    border-bottom: solid 1px var(--line);
+    font-size: 30px;
+    padding: 15px 0px 15px 0px;
+    text-align: center;
+    background-color: black;
+
+}
+
 /* ナビゲーション */
 nav {margin-bottom: 0;
     justify-content: center;
@@ -89,14 +99,23 @@ a {text-decoration: none;
     
 }
 
-.board > button {display: block;
-    margin: 30px auto 15px;
+.send-button {
+    display: block;
+    margin: 20px auto 10px;
+    padding: 10px; 
     width: 240px;
     background-color: var(--line);
     border-radius: 10px;
     border: none;
     font-size: 25px;
-    color: var(--white);}
+    color: var(--white);
+}
+
+/* 削除ボタン */
+.delete-button {
+    background-color: var(--expense);
+    margin-top: 0;
+}
 
 /* 日付 */
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -219,13 +238,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 
-
-.record > form button {
+.record > form > button {
     background-color: var(--line);
     color: var(--white);
     border: none;
     font-size: 15px;
 }
+
 
 /* 集計 */
 .score-head {
@@ -251,9 +270,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: var(--income);
 }
 
-.score-row[hidden], .score-date[hidden] {
-    display: none;
-}
+
 
 /* カレンダータブ*/
 
@@ -311,9 +328,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .score-row {
+    font-size: 15px;
+}
+
+.score-row[hidden], .score-date[hidden] {
+    display: none;
+}
+
+.score-row-link {
     display: grid;
     grid-template-columns: 1.5fr 2fr 1.5fr;
-    font-size: 15px;
+    color: inherit;
 }
 
 .score-category {
@@ -477,4 +502,3 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         font-size: 12px;
     }
 }
-
