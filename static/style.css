@@ -1,29 +1,38 @@
 :root {
+    /* color */
     --bg: rgb(24, 24, 24);
     --white: #cdcdcd;
     --line: #424242;
-    --expense: #c17a7a;
-    --income: #7d8ec7;
+    --expense: rgb(227, 123, 131);
+    --income: rgb(114, 147, 255);
+
+    /* radius */
+    --radius-sm: 5px;
+    --radius-md: 10px;
+
+    /* border */
+    --border: 1.5px solid var(--line)
 
 }
 
 .top {
-    background-color: rgb(32, 32, 32);
+    background-color: var(--bg);
     color: var(--white);
-    margin: 0} 
+    margin: 0
+} 
 
 /* 編集ページヘッダー*/
 .header {
-    border-bottom: solid 1px var(--line);
+    border-bottom: var(--border);
     font-size: 30px;
-    padding: 15px 0px 15px 0px;
+    padding: 15px 0px;
     text-align: center;
     background-color: black;
-
 }
 
 /* ナビゲーション */
-nav {margin-bottom: 0;
+nav {
+    margin: 0;
     justify-content: center;
     display: flex;
     top: 0;
@@ -31,7 +40,7 @@ nav {margin-bottom: 0;
     background-color: var(--bg);
     height: 50px;
     padding: 0;
-    border-bottom: solid 1px var(--line);
+    border-bottom: var(--border);
 }
 
 .menu {
@@ -48,14 +57,14 @@ nav {margin-bottom: 0;
 a {text-decoration: none;
     color: var(--white);}
 
-
+/* 収支切り替えタブ */
 .tabs {
     display: flex;
-    border-bottom: solid 1px var(--line);
     font-size: 20px;
-    margin: -10px -30px 15px -30px;
+    margin: 10px 0px;
     overflow: hidden;
-    border-radius: 10px 10px 0 0;
+    border-radius: var(--radius-md);
+    border: var(--border);
 }
 
 .tabs > label {
@@ -86,16 +95,14 @@ a {text-decoration: none;
 }
 
 /* 入力欄 */
-
-
-
-.board  {background-color: var(--bg);
+.board  {
+    background-color: var(--bg);
     align-items: center;
     margin: 20px auto 10px;
-    padding: 10px 30px 10px 30px; 
+    padding: 10px 30px; 
     width: 70%;
-    max-width: 450px;
-    border-radius: 10px;
+    max-width: 500px;
+    border-radius: var(--radius-md);
     
 }
 
@@ -105,7 +112,7 @@ a {text-decoration: none;
     padding: 10px; 
     width: 240px;
     background-color: var(--line);
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     border: none;
     font-size: 25px;
     color: var(--white);
@@ -117,13 +124,6 @@ a {text-decoration: none;
     margin-top: 0;
 }
 
-/* 日付 */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}
-
 /* 入力ボックス */
 .input {
     width: 75%;
@@ -132,7 +132,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: 5px auto 5px 30px;
     background-color: var(--line);
     border: none;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     color: var(--white);
 }
 
@@ -170,14 +170,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 4px 8px;
     color: var(--white);
     background-color: var(--line);
-    border: 1px solid #777;
-    border-radius: 5px;
+    border: none;
+    border-radius: var(--radius-sm);
     white-space: nowrap;
     cursor: pointer;
 }
 
-/* カテゴリー*/
+/* 日付 */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
 
+/* カテゴリー*/
 .category-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -197,28 +203,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   min-height: 50px;
   box-sizing: border-box;
   padding: 8px 14px;
-  border: 1px solid #999;
-  border-radius: 10px;
+  border: var(--border);
+  border-radius: var(--radius-md);
   cursor: pointer;
   font-size: 15px;
   text-align: center;
 }
 
 .category-button input:checked + span {
-  border: 2px solid #000;
+  border: var(--border);
   background-color: var(--white);
   color: black;
   font-weight: bold;
 }
 
-
-/* カレンダー */
-.record {background-color: var(--bg);
-        margin: 15px auto 0;
-        width: 80%;
-        padding: 10px;
-        border-radius: 10px;
-        max-width: 500px;
+/* 一覧表示 */
+.record {
+    background-color: var(--bg);
+    margin: 15px auto 0;
+    width: 80%;
+    padding: 10px;
+    border-radius: var(--radius-md);
+    max-width: 560px;
 }
 
 .record > form {
@@ -232,7 +238,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 40px;
     background-color: var(--line);
     color: var(--white);
-    padding: 0px 10px 0px 10px;
+    padding: 0px 10px;
     border: none;
     font-size: 20px;
 }
@@ -251,10 +257,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     background-color: var(--line);
     text-align: center;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0px;
     flex-wrap: wrap;
     line-height: 25px;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
 }
 
 .score-head p {
@@ -270,53 +276,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: var(--income);
 }
 
-
-
-/* カレンダータブ*/
-
-.calendar-tabs {
-    display: flex;
-    border-bottom: solid 2px var(--bg);
-    font-size: 15px;
-    margin: 0;
-    overflow: hidden;
-    border-radius: 10px 10px 0 0;
-}
-
-.calendar-tabs > label {
-    flex: 1;
-}
-
-.calendar-tabs > label input {
-    display: none;
-}
-
-.calendar-tabs > label span {
-    display: block;
-    cursor: pointer;
-    padding: 12px 0;
-    text-align: center;
-    background-color: var(--bg);
-}
-
-.calendar-tabs > label input:checked + span {
-    background-color: var(--expense);
-    color: white;
-    font-weight: bold;
-}
-
-.calendar-tabs > label:last-child input:checked + span {
-    background-color: var(--income);
-    color: white;
-    font-weight: bold;
-}
-
 /* 収支表 */
 .score {
     list-style: none;
     margin: 0;
     padding: 0;
-    border: solid 2px var(--line)
+    border: var(--border);
     
 }
 
@@ -346,14 +311,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 2px;
     margin: 0;
     text-align: center;
-    border-right: solid 1px var(--line);
+    border-right: var(--border);
 }
 
 .score-memo {
     padding: 2px;
     margin: 0;
     text-align: center;
-    border-right: solid 1px var(--line);
+    border-right: var(--border);
 }
 .score-amount {
     padding: 2px;
@@ -362,7 +327,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* グラフ */
-
 .graph-panel[hidden] {
     display: none;
 }
@@ -372,8 +336,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 4px;
     font-size: 20px;
     text-align: center;
-    background-color: var(--white);
-    color: var(--line);
+    color: var(--white);
 }
 
 .pie-chart-container {
@@ -394,17 +357,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex: 1;
     padding: 0;
     list-style: none;
-    border: solid 2px var(--line);
+    border: var(--border);
     background-color: var(--bg);
-    font-size: 20px;
+    font-size: 14px;
 }
 
 .pie-legend-row {
     display: grid;
     align-items: center;
     grid-template-columns: 15px 1.5fr 2fr;
-    padding: 8px 20px 8px 10px;
-    border-bottom: solid 2px var(--line);
+    padding: 8px 15px;
+    border-bottom: var(--border);
 }
 
 .pie-legend-row:last-child {
@@ -414,7 +377,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .pie-legend-color {
     width: 14px;
     height: 14px;
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
 }
 
 .pie-legend-category {
@@ -426,27 +389,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     white-space: nowrap;
 }
 
+
 @media (max-width: 600px) {
     .top {
         padding-bottom: 70px;
         background-color: var(--bg);
     }
-    .input-page {
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100dvh;
-        box-sizing: border-box;
-        overflow: hidden;
-  }
-
 
     nav {
         position: fixed;
         bottom: 0;
         top: auto;
-        border-top: solid 2px var(--line);
-
+        border-top: var(--border);
         right: 0;
         left: 0;
 
@@ -454,6 +408,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
         gap: 4px;
         height: 70px;
+    }
+
+    .input-page {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100dvh;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .menu {
@@ -468,11 +431,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         width: calc(100% - 24px);
         padding: 14px 16px 14px 14px;
         border-radius: 0;
-    }
-
-    .tabs {
-        margin: -14px -14px 15px;
-        border-radius: 0px;
     }
 
     .pie-chart-container {
@@ -494,3 +452,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         font-size: 12px;
     }
 }
+
