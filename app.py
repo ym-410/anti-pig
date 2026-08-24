@@ -8,6 +8,19 @@ DATABASE = "antipig.db"
 
 db_handle.create_table()
 
+# 直近12カ月の日付を計算
+def get_recent_months(base_month, count=12):
+    year, month = map(int, base_month.split("-"))
+    months = []
+
+    for offset in range(count - 1, -1, -1):
+        total_month = (year * 12 + month - 1) - offset
+        target_year = total_month // 12
+        target_month = total_month % 12 + 1
+        month.append(f"{target_year:04d}-{target_month:02d}")
+
+    return months
+
 # 入力ページ
 @app.route("/", methods=["GET", "POST"])
 def index():
