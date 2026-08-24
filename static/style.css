@@ -331,14 +331,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
 }
 
-.graph-panel h1 {
-    margin: 0;
-    padding: 4px;
+.graph-title {
+    margin-bottom: 15px;
+    padding: 10px;
     font-size: 20px;
     text-align: center;
     color: var(--white);
 }
 
+/* 円グラフ */
 .pie-chart-container {
     display: flex;
     align-items: center;
@@ -389,6 +390,57 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     white-space: nowrap;
 }
 
+/* 棒グラフ */
+.trend-panel {
+    margin-bottom: 5%;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+    height: 250px;
+}
+
+.bar-column {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+
+.bar {
+    width: 30px;
+    background-color: var(--white);
+}
+
+.bar-amount,
+.bar-month {
+    font-size: 12px;
+    padding: 2px;
+}
+.bar-chart-scroll {
+    overflow-x: auto;
+}
+
+.bar-chart {
+    min-width: 720px;
+}
+
+.bar-chart-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.bar-chart-scroll::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+.bar-chart-scroll::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: var(--radius-md);
+}
 
 @media (max-width: 600px) {
     .top {

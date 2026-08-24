@@ -13,11 +13,8 @@
       <a class="menu" href="/calendar">□ カレンダー</a>
       <a class="menu" href="/graph">◔ グラフ</a>
     </nav>
-    
 
-
-    
-    <main class="record">
+    <main class="record" data-selected-month="{{ month }}">
       
       <form method="get">
         <input
@@ -59,7 +56,7 @@
       <!-- グラフ表示 -->
       <!-- 支出グラフ -->
       <section class="graph-panel" data-is-income="0">
-        <h1>{{ month }}のカテゴリー別支出</h1>
+        <h1 class="graph-title">{{ month }}のカテゴリー別支出</h1>
       
         {% if expense_records %}
           <div class="pie-chart-container">
@@ -73,11 +70,22 @@
         {% else %}
           <p>この月の支出記録はありません</p>
         {% endif %}
-      </section>
 
+        <!-- 棒グラフ -->
+        <section class="trend-panel" hidden>
+          <h2 class="trend-title graph-title"></h2>
+          <p class="trend-loading" hidden>読み込み中…</p>
+          <p class="trend-error" hidden>データを取得できませんでした</p>
+
+          <div class="bar-chart-scroll">
+            <div class="bar-chart"></div>
+          </div>
+        </section>
+      </section>
+      
       <!-- 収入グラフ -->
       <section class="graph-panel" data-is-income="1" hidden>
-        <h1>{{ month }}のカテゴリー別収入</h1>
+        <h1 class="graph-title">{{ month }}のカテゴリー別収入</h1>
 
         {% if income_records %}
           <div class="pie-chart-container">
@@ -91,8 +99,19 @@
         {% else %}
           <p>この月の収入記録はありません</p>
         {% endif %}
-      </section>
 
+        <!-- 棒グラフ -->
+        <section class="trend-panel" hidden>
+          <h2 class="trend-title graph-title"></h2>
+          <p class="trend-loading" hidden>読み込み中…</p>
+          <p class="trend-error" hidden>データを取得できませんでした</p>
+
+          <div class="bar-chart-scroll">
+            <div class="bar-chart"></div>
+          </div>
+        </section>
+      </section>
+      
     </main>
     
     <script src="/static/script.js"></script>

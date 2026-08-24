@@ -1,12 +1,25 @@
 import db_handle
 from datetime import date
-from flask import Flask, render_template, redirect, request # 本体作成 / html読み込み
+from flask import Flask, jsonify, render_template, redirect, request # 本体作成 / html読み込み
 
 app = Flask(__name__)
 DATABASE = "antipig.db"
 
 
 db_handle.create_table()
+
+# 直近12カ月の日付を計算
+def get_recent_months(base_month, count=12):
+    year, month = map(int, base_month.split("-"))
+    months = []
+
+    for offset in range(count - 1, -1, -1):
+        total_month = (year * 12 + month - 1) - offset
+        target_year = total_month // 12
+        target_month = total_month % 12 + 1
+        months.append(f"{target_year:04d}-{target_month:02d}")
+
+    return months
 
 # 入力ページ
 @app.route("/", methods=["GET", "POST"])
@@ -151,7 +164,35 @@ def edit_page(transaction_id):
         submit_label="更新",
         transaction_id=transaction_id,
     )
-        
+
+# カテゴリー別推移
+@app.route("/api/category-trend", methods=["GET"])
+def category_trend():
+    current_month = date.today().strftime("%Y-%m")
+
+    month = request.args.get("month", current_month)
+    category = request.args.get("category", "").strip()
+    is_income = request.args.get("is_income", type=int)
+
+    if not category or is_income not in (0, 1):
+        return jsonify({"error": "入力内容が不正です"}), 400
+
+    months = get_recent_months(month)
+    records = db_handle.category_month_total(
+        category, is_income, month[0], month[-1],
+    )
+
+    totals_by_month = dict(records)
+    amounts = [
+        totals_by_month.get(target_month, 0)
+        for target_month in months
+    ]
+
+    return jsonify({
+        "category": category,
+        "months": months,
+        "amounts": amounts,
+    })
 
 if __name__ == "__main__":
     app.run(debug=True) # コード変更時に再度読み込み
