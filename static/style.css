@@ -391,6 +391,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* 棒グラフ */
+.trend-panel {
+    margin-bottom: 5%;
+}
+
 .bar-chart {
     display: flex;
     align-items: flex-end;
@@ -423,6 +427,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .bar-chart {
     min-width: 720px;
+}
+
+.bar-chart-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.bar-chart-scroll::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+.bar-chart-scroll::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: var(--radius-md);
 }
 
 @media (max-width: 600px) {
