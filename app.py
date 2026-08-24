@@ -17,7 +17,7 @@ def get_recent_months(base_month, count=12):
         total_month = (year * 12 + month - 1) - offset
         target_year = total_month // 12
         target_month = total_month % 12 + 1
-        month.append(f"{target_year:04d}-{target_month:02d}")
+        months.append(f"{target_year:04d}-{target_month:02d}")
 
     return months
 
@@ -179,7 +179,7 @@ def category_trend():
 
     months = get_recent_months(month)
     records = db_handle.category_month_total(
-        category, is_income, month[0], month[1],
+        category, is_income, month[0], month[-1],
     )
 
     totals_by_month = dict(records)
