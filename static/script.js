@@ -126,7 +126,51 @@ const graphColors = [
     "#809d62",
 ];
 
-// 1パネルのグラフを作る
+// カテゴリークリック時の処理
+async function showCategoryTrend(panel, category) {
+    // 選択されている月を取得
+    const page = document.querySelector(".record");
+    const month = page.dataset.selectedMonth;
+
+    const isIncome = panel.dataset.isIncome;
+    const trendPanel = panel.querySelector(".trend-loading")
+    const loading = panel.querySelector(".trend-loading");
+    const error = panel.querySelector(".trend-error");
+
+    trendPanel.hidden = false;
+    loading.hidden = false;
+    error.hidden = true;
+
+    // APIに渡すURLパラメータを作成
+    const params = new URLSearchParams({
+        month: month,
+        category: category,
+        is_income: isIncome,
+    });
+
+    try {
+        // FlaskのAPIへデータを要求
+        const response = await fetch('/api/category-trend?${params}');
+
+        if (!response.ok) {
+            throw new Error("データ取得に失敗しました");
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+        // 棒グラフ描画
+        drawBarChart(panel, data);
+    } catch (fetchError) {
+        console.error(fetchError);
+        error.hidden = false;
+    } finally {
+        loading.hidden = true;
+    }
+
+}
+
+// 1パネルの円グラフを作る
 function drawPieChart(panel) {
 
     const dataElement = panel.querySelector(".pie-data"); // Pythonから渡されるデータ
@@ -180,6 +224,11 @@ function drawPieChart(panel) {
             </span>
         `;
 
+        // クリック
+        item.addEventListener("click", () => {
+            showCategoryTrend(panel, category);
+        });
+
         legend.appendChild(item);
         currentPercent = nextPercent;
            
@@ -188,7 +237,6 @@ function drawPieChart(panel) {
     chart.style.background = `conic-gradient(${gradientParts.join(",")})`;
 
 }
-
 
 function drawPieCharts() {
     const panel = document.querySelectorAll(".graph-panel");
