@@ -127,13 +127,13 @@ const graphColors = [
 ];
 
 // カテゴリークリック時の処理
-async function showCategoryTrend(panel, category) {
+async function showCategoryTrend(panel, category, color) {
     // 選択されている月を取得
     const page = document.querySelector(".record");
     const month = page.dataset.selectedMonth;
 
     const isIncome = panel.dataset.isIncome;
-    const trendPanel = panel.querySelector(".trend-loading")
+    const trendPanel = panel.querySelector(".trend-panel")
     const loading = panel.querySelector(".trend-loading");
     const error = panel.querySelector(".trend-error");
 
@@ -150,7 +150,7 @@ async function showCategoryTrend(panel, category) {
 
     try {
         // FlaskのAPIへデータを要求
-        const response = await fetch('/api/category-trend?${params}');
+        const response = await fetch(`/api/category-trend?${params}`);
 
         if (!response.ok) {
             throw new Error("データ取得に失敗しました");
@@ -160,7 +160,7 @@ async function showCategoryTrend(panel, category) {
         console.log(data);
 
         // 棒グラフ描画
-        drawBarChart(panel, data);
+        drawBarChart(panel, data, color);
     } catch (fetchError) {
         console.error(fetchError);
         error.hidden = false;
@@ -226,7 +226,7 @@ function drawPieChart(panel) {
 
         // クリック
         item.addEventListener("click", () => {
-            showCategoryTrend(panel, category);
+            showCategoryTrend(panel, category, color);
         });
 
         legend.appendChild(item);
@@ -238,12 +238,62 @@ function drawPieChart(panel) {
 
 }
 
+// 円グラフを統合し描画
 function drawPieCharts() {
     const panel = document.querySelectorAll(".graph-panel");
 
     panel.forEach((panel) => {
         drawPieChart(panel);
     });
+}
+
+// 棒グラフ描画
+function drawBarChart(panel, data, color) {
+    const chart = panel.querySelector(".bar-chart");
+    const title = panel.querySelector(".trend-title");
+    const scrollArea = panel.querySelector(".bar-chart-scroll");
+    const maxAmount = Math.max(...data.amounts, 0);
+
+    title.textContent = `${data.category}の月別推移`;
+    chart.replaceChildren(); // 前に表示したグラフの削除
+    data.months.forEach((month, index) => {
+        const amount = data.amounts[index];
+        const height = maxAmount === 0 ? 0 : amount / maxAmount * 100;
+    
+        const column = document.createElement("div");
+        column.className = "bar-column";
+
+        // 金額表示
+        const amountElement = document.createElement("span");
+        amountElement.className = "bar-amount";
+        amountElement.textContent = `${amount.toLocaleString()}円`;
+        
+        // 棒
+        const bar = document.createElement("div");
+        bar.className = "bar";
+        bar.style.height = `${height}%`;
+        bar.style.backgroundColor = color;
+
+        // 月表示
+        const monthElement = document.createElement("span");
+        monthElement.className = "bar-month";
+        monthElement.textContent = `${month.slice(5, 7)}月`;
+
+        // 1カ月分を組み立てる
+        column.append(
+            amountElement,
+            bar,
+            monthElement,
+        );
+
+        // グラフへ追加
+        chart.appendChild(column);        
+    });
+
+    requestAnimationFrame(() => {
+        scrollArea.scrollLeft = scrollArea.scrollWidth;
+    })
+
 }
 
 function changeGraph() {

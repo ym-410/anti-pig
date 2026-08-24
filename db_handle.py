@@ -201,6 +201,24 @@ def month_expense(month):
 
     return month_expense[0] or 0
 
+# 月別カテゴリー合計
+def category_month_total(category, is_income, start_month, end_month):
+    connection = sqlite3.connect(DATABASE)
+
+    record = connection.execute(
+        """
+        SELECT substr(date, 1, 7) AS month, SUM(amount) AS total
+        FROM transactions
+        WHERE category = ?
+            AND is_income = ?
+            AND substr(date, 1, 7) BETWEEN ? AND ?
+            GROUP BY substr(date, 1, 7)
+            ORDER BY month
+            """, (category, is_income, start_month, end_month),
+    ).fetchall()
+
+    connection.close()
+    return record
 
 # 合計取得
 def get_total():
