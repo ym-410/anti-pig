@@ -264,7 +264,7 @@ def get_category_month_records(month, category, is_income):
             AND category = ?
         ORDER BY date DESC, id DESC
         """,
-        (month, category, is_income),
+        (month, is_income, category),
     ).fetchall()
 
     connection.close()
