@@ -179,7 +179,11 @@ def category_trend():
 
     months = get_recent_months(month)
     records = db_handle.category_month_total(
-        category, is_income, month[0], month[-1],
+        category, is_income, months[0], months[-1],
+    )
+
+    category_records = db_handle.get_category_month_records(
+        month, category, is_income
     )
 
     totals_by_month = dict(records)
@@ -192,6 +196,7 @@ def category_trend():
         "category": category,
         "months": months,
         "amounts": amounts,
+        "records": category_records
     })
 
 if __name__ == "__main__":
