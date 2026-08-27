@@ -161,6 +161,8 @@ async function showCategoryTrend(panel, category, color) {
 
         // 棒グラフ描画
         drawBarChart(panel, data, color);
+        drawCategoryRecords(panel, data)
+
     } catch (fetchError) {
         console.error(fetchError);
         error.hidden = false;
@@ -295,6 +297,94 @@ function drawBarChart(panel, data, color) {
     })
 
 }
+
+// カテゴリー別月別データ表示
+function drawCategoryRecords(panel, data) {
+    const page = document.querySelector(".record")
+    const month = page.dataset.selectedMonth;
+
+    const list = panel.querySelector(".category-records-list");
+    const title = panel.querySelector(".category-records-title");
+    const emptyMessage = panel.querySelector(".category-records-empty")
+    
+    if (!list || !title || !emptyMessage) {
+        return;
+    }
+    
+    list.replaceChildren();
+    
+    title.textContent = `${data.category}の明細（${month}）`
+
+    if (data.records.length === 0) {
+        list.hidden = true;
+        emptyMessage.hidden = false;
+        return;
+    }
+
+    list.hidden = false;
+    emptyMessage.hidden = true;
+
+    let previousDate = "";
+
+    data.records.forEach((record) => {
+        const transactionDate = record[3];
+
+        // 前の明細と日付が違う場合に日付行を追加
+        if (transactionDate !== previousDate) {
+            list.appendChild(createDateRow(transactionDate));
+            previousDate = transactionDate;
+        }
+
+        list.appendChild(createRecordRow(record));
+    });
+}
+
+// 日付行を作る関数
+function createDateRow(date) {
+    const dateRow = document.createElement("li");
+
+    dateRow.className = "score-date";
+    dateRow.textContent = date;
+
+    return dateRow;
+}
+
+// 明細行を作る関数
+function createRecordRow(record) {
+    const transactionId = record[0];
+    const amount = record[1];
+    const category = record[2];
+    const memo = record[4];
+
+    const row = document.createElement("li");
+    row.className = "score-row";
+
+    const link = document.createElement("a");
+    link.className = "score-row-link";
+    link.href = `/transactions/${transactionId}/edit`;
+
+    const categoryElement = document.createElement("p");
+    categoryElement.className = "score-category";
+    categoryElement.textContent = category;
+
+    const memoElement = document.createElement("p");
+    memoElement.className = "score-memo";
+    memoElement.textContent = memo;
+
+    const amountElement = document.createElement("p");
+    amountElement.className = "score-amount";
+    amountElement.textContent = `${amount.toLocaleString()}円`;
+
+    link.append(
+        categoryElement,
+        memoElement,
+        amountElement,
+    );
+
+    row.appendChild(link);
+    return row;
+}
+
 
 function changeGraph() {
     const checkedInput = document.querySelector('input[name="graph_type"]:checked');

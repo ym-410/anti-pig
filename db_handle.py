@@ -233,7 +233,7 @@ def get_total():
     return result[0] or 0
 
 # グラフ
-## カテゴリー別支出
+## カテゴリー別収支
 def get_category_totals(month, is_income):
     connection = sqlite3.connect(DATABASE)
 
@@ -251,3 +251,22 @@ def get_category_totals(month, is_income):
 
     connection.close()
     return records
+
+# 月別かつカテゴリー別データ取得
+def get_category_month_records(month, category, is_income):
+    connection = sqlite3.connect(DATABASE)
+    category_month_record = connection.execute(
+        """
+        SELECT id, amount, category, date, memo, is_income
+        FROM transactions
+        WHERE substr(date, 1, 7) = ?
+            AND is_income = ?
+            AND category = ?
+        ORDER BY date DESC, id DESC
+        """,
+        (month, is_income, category),
+    ).fetchall()
+
+    connection.close()
+
+    return category_month_record
