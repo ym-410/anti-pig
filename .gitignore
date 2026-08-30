@@ -2,3 +2,4 @@ antipig.db
 .venv
 __pycache__
 sample
+backups/

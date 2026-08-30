@@ -192,6 +192,7 @@ http://127.0.0.1:5000
 ```text
 antipig_py/
 ├── app.py                     # Flaskアプリの作成とルーティング
+├── backup.sh                  # SQLiteデータベースのバックアップ
 ├── db_handle.py               # SQLiteへの登録、取得、集計処理
 ├── requirements.txt           # Python依存パッケージ
 ├── static/
@@ -217,6 +218,24 @@ antipig_py/
 | `date` | `TEXT` | `NOT NULL` | 日付 |
 | `memo` | `TEXT` | `NOT NULL` | メモ |
 | `is_income` | `INTEGER` | `NOT NULL` | 支出・収入区分 |
+
+## バックアップ
+
+バックアップには`sqlite3`コマンドが必要です。インストールされていることを次のコマンドで確認できます。
+
+```bash
+sqlite3 --version
+```
+
+プロジェクト直下でバックアップスクリプトを実行します。
+
+```bash
+./backup.sh
+```
+
+`backups/antipig-YYYY-MM-DD_HHMMSS.db`という名前で、実行時点のデータベースが保存されます。バックアップ先ディレクトリの権限は`700`、バックアップファイルの権限は`600`に設定されます。
+
+`antipig.db`と`backups/`は`.gitignore`の対象です。家計簿データとそのバックアップはGitHubへアップロードされません。
 
 ## 現在の制約
 
