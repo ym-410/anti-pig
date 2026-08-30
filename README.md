@@ -233,7 +233,7 @@ sqlite3 --version
 ./backup.sh
 ```
 
-`backups/antipig-YYYY-MM-DD_HHMMSS.db`という名前で、実行時点のデータベースが保存されます。バックアップ先ディレクトリの権限は`700`、バックアップファイルの権限は`600`に設定されます。
+`backups/YYYY-MM-DD_HHMMSS.db`という名前で、実行時点のデータベースが保存されます。バックアップ先ディレクトリの権限は`700`、バックアップファイルの権限は`600`に設定されます。
 
 `antipig.db`と`backups/`は`.gitignore`の対象です。家計簿データとそのバックアップはGitHubへアップロードされません。
 
