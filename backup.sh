@@ -4,7 +4,7 @@ set -euo pipefail
 APP_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 DB_FILE="$APP_DIR/antipig.db"
 BACKUP_DIR="$APP_DIR/backups"
-BACKUP_FILE="$BACKUP_DIR/antipig-$(date +%Y-%m-%d_%H%M%S).db"
+BACKUP_FILE="$BACKUP_DIR/$(date +%Y-%m-%d_%H%M%S).db"
 
 if [[ ! -f "$DB_FILE" ]]; then
     echo "データベースが見つかりません: $DB_FILE" >&2
